@@ -1,0 +1,20 @@
+{
+  "frontend/src/App.tsx": "Main application component handling authentication flow, profile setup, and dashboard rendering with theme provider and toast notifications.",
+  "frontend/src/hooks/useQueries.ts": "Custom React Query hooks for all backend operations including inventory, shipments, movements, facilities, reports, user profiles, and CRM relationships with proper error handling and cache invalidation.",
+  "frontend/src/components/Header.tsx": "Sticky application header with modern branding, theme toggle, and user profile dropdown with improved visual balance.",
+  "frontend/src/components/Footer.tsx": "Simple footer component with attribution and link to caffeine.ai.",
+  "frontend/src/components/LoginPrompt.tsx": "Modern landing page with hero section, feature cards, and prominent login button with improved spacing and visual hierarchy.",
+  "frontend/src/components/ProfileSetupModal.tsx": "Modal dialog for first-time user profile setup requiring name and contact information.",
+  "frontend/src/pages/Dashboard.tsx": "Main dashboard with responsive scrollable tab navigation and fade-in animations for tab content transitions.",
+  "frontend/src/components/DashboardOverview.tsx": "Dashboard overview with metric cards, low stock alerts, and pending shipments using PageHeader and EmptyState components.",
+  "frontend/src/components/InventoryTab.tsx": "Inventory management interface with search, add/edit dialogs, and status badges using PageHeader and EmptyState for consistency.",
+  "frontend/src/components/ShipmentTab.tsx": "Shipment management with create dialog, status tracking, and table view using PageHeader and EmptyState components.",
+  "frontend/src/components/MovementTab.tsx": "Equipment movement logging with form validation and history table using PageHeader and EmptyState for consistency.",
+  "frontend/src/components/FacilityTab.tsx": "Healthcare facility management with card grid layout and hover effects using PageHeader and EmptyState components.",
+  "frontend/src/components/ReportTab.tsx": "Reporting interface with nested tabs for summary and hospital-specific reports using PageHeader and EmptyState components.",
+  "frontend/src/index.css": "Global styles with healthcare-inspired OKLCH color system (teal/emerald primary with warm accents), custom typography scale, and comprehensive light/dark mode support.",
+  "frontend/src/components/CRMTab.tsx": "CRM interface with relationship cards, interaction notes, and admin controls using PageHeader and EmptyState for consistency.",
+  "frontend/tailwind.config.js": "Tailwind configuration with extended theme tokens, custom container padding, Inter font family, soft shadows, and fade-in animation.",
+  "frontend/src/components/PageHeader.tsx": "Reusable page header component with title, optional description, and action slot for consistent visual hierarchy across tabs.",
+  "frontend/src/components/EmptyState.tsx": "Reusable empty state component with icon, title, optional description, and action slot for standardized empty screens."
+}

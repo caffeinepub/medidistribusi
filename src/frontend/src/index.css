@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.75rem;
+        
+        /* Healthcare-inspired palette: Teal/Emerald with warm accents */
+        --background: 0.99 0.005 180;
+        --foreground: 0.20 0.015 200;
+        
+        --card: 1 0 0;
+        --card-foreground: 0.20 0.015 200;
+        
+        --popover: 1 0 0;
+        --popover-foreground: 0.20 0.015 200;
+        
+        /* Primary: Vibrant teal for healthcare trust */
+        --primary: 0.58 0.14 190;
+        --primary-foreground: 0.99 0.005 190;
+        
+        /* Secondary: Soft sage green */
+        --secondary: 0.95 0.02 160;
+        --secondary-foreground: 0.25 0.02 160;
+        
+        /* Muted: Light neutral with subtle warmth */
+        --muted: 0.96 0.008 180;
+        --muted-foreground: 0.52 0.012 200;
+        
+        /* Accent: Warm coral for highlights */
+        --accent: 0.94 0.025 50;
+        --accent-foreground: 0.30 0.02 50;
+        
+        /* Destructive: Warm red */
+        --destructive: 0.60 0.20 25;
+        --destructive-foreground: 0.99 0.005 25;
+        
+        /* Success: Fresh green */
+        --success: 0.65 0.16 145;
+        --success-foreground: 0.99 0.005 145;
+        
+        /* Warning: Amber */
+        --warning: 0.75 0.18 70;
+        --warning-foreground: 0.25 0.02 70;
+        
+        --border: 0.92 0.008 180;
+        --input: 0.92 0.008 180;
+        --ring: 0.58 0.14 190;
+        
+        /* Chart colors: Harmonious healthcare palette */
+        --chart-1: 0.58 0.14 190;
+        --chart-2: 0.65 0.16 145;
+        --chart-3: 0.68 0.15 220;
+        --chart-4: 0.72 0.16 280;
+        --chart-5: 0.70 0.14 50;
+        
+        --sidebar: 0.99 0.005 180;
+        --sidebar-foreground: 0.20 0.015 200;
+        --sidebar-primary: 0.58 0.14 190;
+        --sidebar-primary-foreground: 0.99 0.005 190;
+        --sidebar-accent: 0.95 0.02 160;
+        --sidebar-accent-foreground: 0.25 0.02 160;
+        --sidebar-border: 0.92 0.008 180;
+        --sidebar-ring: 0.58 0.14 190;
+    }
+
+    .dark {
+        --background: 0.14 0.015 200;
+        --foreground: 0.96 0.008 180;
+        
+        --card: 0.18 0.018 200;
+        --card-foreground: 0.96 0.008 180;
+        
+        --popover: 0.16 0.016 200;
+        --popover-foreground: 0.96 0.008 180;
+        
+        /* Primary: Brighter teal for dark mode */
+        --primary: 0.68 0.16 190;
+        --primary-foreground: 0.14 0.015 190;
+        
+        /* Secondary: Muted sage */
+        --secondary: 0.24 0.025 160;
+        --secondary-foreground: 0.96 0.008 160;
+        
+        --muted: 0.22 0.020 200;
+        --muted-foreground: 0.68 0.015 180;
+        
+        /* Accent: Softer coral for dark */
+        --accent: 0.28 0.030 50;
+        --accent-foreground: 0.96 0.008 50;
+        
+        --destructive: 0.62 0.22 25;
+        --destructive-foreground: 0.96 0.008 25;
+        
+        --success: 0.68 0.18 145;
+        --success-foreground: 0.14 0.015 145;
+        
+        --warning: 0.72 0.20 70;
+        --warning-foreground: 0.14 0.015 70;
+        
+        --border: 0.26 0.022 200;
+        --input: 0.26 0.022 200;
+        --ring: 0.68 0.16 190;
+        
+        --chart-1: 0.68 0.16 190;
+        --chart-2: 0.68 0.18 145;
+        --chart-3: 0.70 0.17 220;
+        --chart-4: 0.74 0.18 280;
+        --chart-5: 0.72 0.16 50;
+        
+        --sidebar: 0.18 0.018 200;
+        --sidebar-foreground: 0.96 0.008 180;
+        --sidebar-primary: 0.68 0.16 190;
+        --sidebar-primary-foreground: 0.14 0.015 190;
+        --sidebar-accent: 0.24 0.025 160;
+        --sidebar-accent-foreground: 0.96 0.008 160;
+        --sidebar-border: 0.26 0.022 200;
+        --sidebar-ring: 0.68 0.16 190;
+    }
+
+    * {
+        @apply border-border;
+    }
+    
+    body {
+        @apply bg-background text-foreground;
+        font-feature-settings: "rlig" 1, "calt" 1;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-semibold tracking-tight;
+    }
+    
+    h1 {
+        @apply text-4xl;
+    }
+    
+    h2 {
+        @apply text-3xl;
+    }
+    
+    h3 {
+        @apply text-2xl;
+    }
+}
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+}
