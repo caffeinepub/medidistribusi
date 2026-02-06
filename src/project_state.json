@@ -1,164 +1,32 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "MediDistribusi is a web app for managing healthcare equipment distribution, built with a React + Tailwind (shadcn/ui) frontend and an ICP Motoko canister backend. Users authenticate via Internet Identity, are assigned roles (admin/user/guest) through a token-based access-control initializer, and then can manage equipment inventory, create and track shipments to hospitals/clinics, log equipment movements between locations, maintain a CRM-style relationship list with interaction notes, and generate admin-only distribution reports. The frontend uses TanStack React Query for all canister interactions with cache invalidation and toast-based feedback.",
+  "summary": "Project to build/redeploy an app with a responsive, modern, simple UI template.",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
   "existing_features": [
     {
-      "id": "IF-1",
-      "title": "Internet Identity authentication and session persistence",
-      "synonyms": [
-        "II login",
-        "AuthClient integration"
-      ],
-      "description": "Provides an authentication context using DFINITY AuthClient, supports login via Internet Identity, persists/loads delegation from storage on reload, and exposes login/clear plus detailed status flags.",
-      "reqIds": [],
-      "version": 1
-    },
-    {
-      "id": "IF-2",
-      "title": "Identity-aware canister actor creation and lifecycle management",
-      "synonyms": [
-        "backend actor hook",
-        "useActor"
-      ],
-      "description": "Creates an anonymous canister actor when unauthenticated and an identity-bound actor when authenticated; initializes authorization on actor creation and invalidates/refetches React Query caches when the actor changes.",
-      "reqIds": [],
-      "version": 1
-    },
-    {
-      "id": "IF-3",
-      "title": "Token-bootstrapped role-based access control (admin/user/guest)",
-      "synonyms": [
-        "RBAC",
-        "authorization mixin"
-      ],
-      "description": "Motoko access-control module assigns roles per Principal, supports admin-only role assignment, and checks permissions for each endpoint. Admin bootstrap uses an env var (`CAFFEINE_ADMIN_TOKEN`) plus a caller-provided secret token.",
-      "reqIds": [],
-      "version": 1
-    },
-    {
-      "id": "IF-4",
-      "title": "User profile management and first-time profile setup",
-      "synonyms": [
-        "profile setup modal",
-        "caller profile"
-      ],
-      "description": "Stores a per-user profile (name + contact). The app forces first-time users to complete a profile via a modal before accessing the dashboard; profile can be saved and fetched through canister endpoints.",
-      "reqIds": [],
-      "version": 1
-    },
-    {
-      "id": "IF-5",
-      "title": "Dashboard overview metrics and operational alerts",
-      "synonyms": [
-        "dashboard cards",
-        "low stock & pending shipments"
-      ],
-      "description": "Shows aggregated metrics (total inventory items, low-stock count, pending shipments, delivered shipments) plus lists for low-stock items and pending shipments, sourced from canister dashboard/reporting queries.",
-      "reqIds": [],
-      "version": 1
-    },
-    {
-      "id": "IF-6",
-      "title": "Inventory management (list/search/add/update quantity)",
-      "synonyms": [
-        "inventaris",
-        "equipment stock"
-      ],
-      "description": "Frontend provides inventory listing with search, add-inventory dialog (type/category/description/location/quantity), and quantity update dialog. Backend supports listing, lookup, location/category filters, low-stock query, adding items, updating quantities, and admin-only deletion.",
-      "reqIds": [],
-      "version": 1
-    },
-    {
-      "id": "IF-7",
-      "title": "Shipment management (create, list, filter by status, update status)",
-      "synonyms": [
-        "pengiriman",
-        "delivery tracking"
-      ],
-      "description": "Users can create shipments by selecting a destination facility and equipment IDs, view all shipments, filter by status, and update shipment status (pending/in-transit/delivered). Backend includes get-by-id/destination/status and admin-only deletion.",
-      "reqIds": [],
-      "version": 1
-    },
-    {
-      "id": "IF-8",
-      "title": "Equipment movement logging",
-      "synonyms": [
-        "log pergerakan",
-        "transfer tracking"
-      ],
-      "description": "Allows users to log movements of equipment between locations with quantity and source/destination fields; displays movement history. Backend stores per-movement logs (with timestamp and caller principal) and supports log queries (all, by equipment, by date range).",
-      "reqIds": [],
-      "version": 1
-    },
-    {
-      "id": "IF-9",
-      "title": "Facility directory management (hospitals/clinics)",
-      "synonyms": [
-        "rumah sakit/klinik",
-        "facility tab"
-      ],
-      "description": "Lists registered facilities and provides UI to add new facilities. Backend supports facility lookup and admin-only add/update/delete operations.",
-      "reqIds": [],
-      "version": 1
-    },
-    {
-      "id": "IF-10",
-      "title": "Admin-only reporting (summary and per-hospital)",
-      "synonyms": [
-        "laporan ringkasan",
-        "hospital report"
-      ],
-      "description": "Generates summary reports over a date range (total shipments, total equipment, shipments per destination) and per-hospital shipment lists over a date range; enforced as admin-only in the backend.",
-      "reqIds": [],
-      "version": 1
-    },
-    {
-      "id": "IF-11",
-      "title": "CRM relationship management for medical facilities",
-      "synonyms": [
-        "Relasi pelayanan medis",
-        "partner tracking"
-      ],
-      "description": "Provides a CRM module to list and search relationships with facilities, track partnership status, and (admin-only) add/edit/delete relationships. Data is stored in-canister with incremental IDs.",
-      "reqIds": [],
-      "version": 1
-    },
-    {
-      "id": "IF-12",
-      "title": "CRM interaction notes",
-      "synonyms": [
-        "catatan interaksi",
-        "follow-up notes"
-      ],
-      "description": "Allows authenticated users to add interaction notes to an existing CRM relationship; notes store timestamp and are attributed server-side to the caller principal.",
-      "reqIds": [],
-      "version": 1
-    },
-    {
-      "id": "IF-13",
-      "title": "App shell and UX components (tabs, theming, toasts)",
-      "synonyms": [
-        "UI shell",
-        "shadcn/tailwind theme"
-      ],
-      "description": "Implements a tabbed dashboard layout, header with user dropdown and logout, footer attribution, light/dark theme support, loading skeletons, and toast notifications for mutation success/failure.",
-      "reqIds": [],
-      "version": 1
-    },
-    {
-      "id": "feature-apply-a-cohesive-modern-visual-theme-across-the-entire-frontend-login-header-dashboard-and-all-tabs-by-updating-tailwind-theme-tokens-css-variables-typography-scale-spacing-and-component-composition-to-feel-more-polished-and-consistent-in-both-light-and-dark-mode-choose-a-distinct-professional-healthcare-appropriate-style-avoid-a-blue-purple-dominant-palette-unless-explicitly-required-and-enforce-it-consistently-across-pages",
-      "title": "Apply a cohesive modern visual theme across the entire frontend (login, header, dashboard, and all tabs) by updating Tailwind theme tokens (CSS variables), typography scale, spacing, and component composition to feel more polished and consistent in both light and dark mode. Choose a distinct, professional healthcare-appropriate style (avoid a blue/purple-dominant palette unless explicitly required) and enforce it consistently across pages.",
+      "id": "feature-apply-a-cohesive-responsive-modern-and-simple-visual-theme-across-the-entire-frontend-login-header-dashboard-and-all-tabs-using-tailwind-tokens-css-variables-consistent-typography-spacing-and-elevation-in-both-light-and-dark-mode",
+      "title": "Apply a cohesive, responsive, modern, and simple visual theme across the entire frontend (login, header, dashboard, and all tabs) using Tailwind tokens/CSS variables, consistent typography, spacing, and elevation in both light and dark mode.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-polish-key-screens-to-look-modern-refine-the-header-branding-block-improve-the-dashboard-tab-navigation-responsiveness-and-visual-hierarchy-and-upgrade-major-content-containers-cards-tables-lists-dialogs-forms-with-better-spacing-alignment-and-consistent-empty-loading-states-without-modifying-read-only-shadcn-ui-component-sources",
-      "title": "Polish key screens to look modern: refine the Header branding block, improve the Dashboard tab navigation responsiveness and visual hierarchy, and upgrade major content containers (cards, tables/lists, dialogs, forms) with better spacing, alignment, and consistent empty/loading states—without modifying read-only shadcn/ui component sources.",
+      "id": "feature-ensure-the-app-layout-is-fully-responsive-across-common-breakpoints-mobile-tablet-desktop-improve-the-header-branding-block-dashboard-tab-navigation-and-primary-content-containers-so-they-adapt-cleanly-without-overflow-or-cramped-spacing",
+      "title": "Ensure the app layout is fully responsive across common breakpoints (mobile, tablet, desktop): improve the header branding block, dashboard tab navigation, and primary content containers so they adapt cleanly without overflow or cramped spacing.",
       "reqIds": [
         "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-polish-and-simplify-the-ui-composition-of-major-content-elements-cards-tables-lists-dialogs-forms-empty-loading-states-to-feel-modern-and-consistent-while-keeping-interactions-and-existing-features-unchanged",
+      "title": "Polish and simplify the UI composition of major content elements (cards, tables/lists, dialogs, forms, empty/loading states) to feel modern and consistent while keeping interactions and existing features unchanged.",
+      "reqIds": [
+        "REQ-3"
       ],
       "version": 1
     }
@@ -166,35 +34,12 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Update UI/UX to a more modern, polished look across the app (layout, styling, components, visual consistency).",
+      "summary": "Use a responsive, modern, simple template for the app UI.",
       "reqIds": [],
       "status": "pending"
     }
   ],
-  "architectural_notes": [
-    "ICP canister backend implemented in Motoko with Map-based in-canister state and explicit upgrade migration via `(with migration = Migration.run)`.",
-    "Role-based access control (admin/user/guest) implemented as a reusable authorization mixin; admin bootstrap depends on an environment variable token plus a user-provided secret.",
-    "Frontend actor instantiation is identity-aware: creates an anonymous actor when not logged in, and an authenticated actor (with identity) on login; actor changes trigger React Query cache invalidation/refetch.",
-    "TanStack React Query is used as the data access layer (custom hooks per backend operation) with targeted cache invalidation (inventaris/pengiriman/dashboard/etc).",
-    "UI is organized as a tabbed dashboard (overview, inventory, shipment, movement, facility, CRM, report) using shadcn/ui primitives and Tailwind design tokens; theme switching via next-themes.",
-    "Sensitive “admin token” is intended to be passed via URL hash and persisted to sessionStorage using utilities that can clear the value from the address bar.",
-    "Backend exposes both user-facing operations and admin-only management endpoints (delete inventory/shipments, facility CRUD, CRM CRUD, report generation, role assignment)."
-  ],
-  "known_issues": [
-    "Unauthenticated sessions still create an anonymous actor; some queries (e.g., `getCallerUserProfile`, `isCallerAdmin`) can run even when not authenticated and will trap server-side due to RBAC, potentially producing noisy errors unless callers gate these queries by `identity`/auth state.",
-    "`logPergerakanPeralatan` updates inventory by changing the item’s `lokasi` to the destination while also reducing `jumlah`, which effectively relocates the *remaining* stock rather than moving the transferred quantity; it does not create/increment destination stock entries.",
-    "`createPengiriman` decrements inventory by 1 per selected equipment ID and stores the pre-decrement item snapshot in the shipment; it does not support shipping multiple units of the same item in one shipment.",
-    "Admin-token parsing is inconsistent: `getSecretParameter()` only parses hash fragments like `#caffeineAdminToken=...`, while other utilities support route-style hashes like `#/route?caffeineAdminToken=...`; passing tokens via routed hashes may fail.",
-    "Access-control bootstrap hard-depends on `CAFFEINE_ADMIN_TOKEN` being set in the canister environment; otherwise `_initializeAccessControlWithSecret` traps and blocks authenticated actor setup.",
-    "AccessControl comment says “first caller becomes admin” but actual logic allows the first caller *with the token* to become admin while `adminAssigned` remains false until that happens.",
-    "Logout UI state uses `loginStatus === 'logging-in'` as a proxy for “logging out”, so disabling/labeling during logout is likely incorrect or misleading.",
-    "Backend permission checks rely on `getUserRole` which traps when a principal has not been registered via initialization; callers that bypass `_initializeAccessControlWithSecret` will see hard traps instead of graceful authorization errors.",
-    "No pagination/limits on list queries (inventory, shipments, logs, CRM); large datasets may degrade performance.",
-    "Many inputs are lightly validated on the frontend (e.g., quantities via `BigInt()`); backend lacks explicit checks for some edge cases (e.g., negative values are impossible in `Nat`, but shipment selection/stock handling is simplistic)."
-  ],
-  "isFixRequest": false,
-  "gameProjectType": "none",
-  "projectName": "MediDistribusi",
+  "projectName": "Apply a responsive, modern, simple UI template across the app",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

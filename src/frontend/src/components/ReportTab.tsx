@@ -63,27 +63,27 @@ export default function ReportTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <PageHeader
         title="Laporan"
         description="Buat laporan distribusi dan analisis"
       />
 
-      <Tabs defaultValue="summary" className="space-y-6">
+      <Tabs defaultValue="summary" className="space-y-4">
         <TabsList className="grid w-full max-w-md grid-cols-2">
-          <TabsTrigger value="summary">Laporan Ringkasan</TabsTrigger>
+          <TabsTrigger value="summary">Ringkasan</TabsTrigger>
           <TabsTrigger value="hospital">Per Rumah Sakit</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="summary" className="space-y-6">
-          <Card className="border shadow-xs">
-            <CardHeader>
-              <CardTitle>Laporan Ringkasan</CardTitle>
-              <CardDescription>Buat laporan ringkasan berdasarkan rentang tanggal</CardDescription>
+        <TabsContent value="summary" className="space-y-4">
+          <Card className="border">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-base">Laporan Ringkasan</CardTitle>
+              <CardDescription className="text-sm">Buat laporan berdasarkan rentang tanggal</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid gap-4 md:grid-cols-2">
-                <div className="space-y-2">
+            <CardContent className="space-y-3">
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div className="space-y-1.5">
                   <Label htmlFor="summaryStart">Tanggal Mulai</Label>
                   <Input
                     id="summaryStart"
@@ -92,7 +92,7 @@ export default function ReportTab() {
                     onChange={(e) => setSummaryStartDate(e.target.value)}
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <Label htmlFor="summaryEnd">Tanggal Akhir</Label>
                   <Input
                     id="summaryEnd"
@@ -108,40 +108,40 @@ export default function ReportTab() {
                 className="gap-2"
               >
                 <FileText className="h-4 w-4" />
-                {generateSummary.isPending ? 'Membuat Laporan...' : 'Buat Laporan'}
+                {generateSummary.isPending ? 'Membuat...' : 'Buat Laporan'}
               </Button>
             </CardContent>
           </Card>
 
           {summaryReport && (
-            <Card className="border shadow-xs">
-              <CardHeader>
-                <CardTitle>Hasil Laporan Ringkasan</CardTitle>
-                <CardDescription>
-                  Periode: {formatDate(summaryReport.periodeAwal)} - {formatDate(summaryReport.periodeAkhir)}
+            <Card className="border">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-base">Hasil Laporan Ringkasan</CardTitle>
+                <CardDescription className="text-sm">
+                  {formatDate(summaryReport.periodeAwal)} - {formatDate(summaryReport.periodeAkhir)}
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="grid gap-4 md:grid-cols-2">
-                  <div className="rounded-xl border bg-gradient-to-br from-primary/5 to-primary/10 p-6">
-                    <p className="text-sm font-medium text-muted-foreground">Total Pengiriman</p>
-                    <p className="text-4xl font-bold mt-2">{summaryReport.totalPengiriman.toString()}</p>
+              <CardContent className="space-y-4">
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <div className="rounded-lg border bg-primary/5 p-4">
+                    <p className="text-xs font-medium text-muted-foreground">Total Pengiriman</p>
+                    <p className="text-3xl font-semibold mt-1">{summaryReport.totalPengiriman.toString()}</p>
                   </div>
-                  <div className="rounded-xl border bg-gradient-to-br from-chart-2/5 to-chart-2/10 p-6">
-                    <p className="text-sm font-medium text-muted-foreground">Total Peralatan</p>
-                    <p className="text-4xl font-bold mt-2">{summaryReport.totalPeralatan.toString()}</p>
+                  <div className="rounded-lg border bg-chart-2/5 p-4">
+                    <p className="text-xs font-medium text-muted-foreground">Total Peralatan</p>
+                    <p className="text-3xl font-semibold mt-1">{summaryReport.totalPeralatan.toString()}</p>
                   </div>
                 </div>
 
                 {summaryReport.pengirimanPerTujuan.length > 0 ? (
                   <div>
-                    <h4 className="font-semibold mb-3">Pengiriman per Tujuan</h4>
-                    <div className="rounded-lg border">
+                    <h4 className="font-medium mb-2 text-sm">Pengiriman per Tujuan</h4>
+                    <div className="rounded-lg border overflow-x-auto">
                       <Table>
                         <TableHeader>
                           <TableRow>
                             <TableHead>Tujuan</TableHead>
-                            <TableHead className="text-right">Jumlah Pengiriman</TableHead>
+                            <TableHead className="text-right">Jumlah</TableHead>
                           </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -158,7 +158,7 @@ export default function ReportTab() {
                 ) : (
                   <EmptyState
                     icon={FileText}
-                    title="Tidak ada data pengiriman"
+                    title="Tidak ada data"
                     description="Tidak ada pengiriman dalam periode ini"
                   />
                 )}
@@ -167,14 +167,14 @@ export default function ReportTab() {
           )}
         </TabsContent>
 
-        <TabsContent value="hospital" className="space-y-6">
-          <Card className="border shadow-xs">
-            <CardHeader>
-              <CardTitle>Laporan per Rumah Sakit</CardTitle>
-              <CardDescription>Buat laporan untuk rumah sakit tertentu</CardDescription>
+        <TabsContent value="hospital" className="space-y-4">
+          <Card className="border">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-base">Laporan per Rumah Sakit</CardTitle>
+              <CardDescription className="text-sm">Buat laporan untuk rumah sakit tertentu</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
+            <CardContent className="space-y-3">
+              <div className="space-y-1.5">
                 <Label>Rumah Sakit/Klinik</Label>
                 <Select value={hospitalName} onValueChange={setHospitalName}>
                   <SelectTrigger>
@@ -189,8 +189,8 @@ export default function ReportTab() {
                   </SelectContent>
                 </Select>
               </div>
-              <div className="grid gap-4 md:grid-cols-2">
-                <div className="space-y-2">
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div className="space-y-1.5">
                   <Label htmlFor="hospitalStart">Tanggal Mulai</Label>
                   <Input
                     id="hospitalStart"
@@ -199,7 +199,7 @@ export default function ReportTab() {
                     onChange={(e) => setHospitalStartDate(e.target.value)}
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <Label htmlFor="hospitalEnd">Tanggal Akhir</Label>
                   <Input
                     id="hospitalEnd"
@@ -220,25 +220,25 @@ export default function ReportTab() {
                 className="gap-2"
               >
                 <FileText className="h-4 w-4" />
-                {generateByHospital.isPending ? 'Membuat Laporan...' : 'Buat Laporan'}
+                {generateByHospital.isPending ? 'Membuat...' : 'Buat Laporan'}
               </Button>
             </CardContent>
           </Card>
 
           {hospitalReport && (
-            <Card className="border shadow-xs">
-              <CardHeader>
-                <CardTitle>Hasil Laporan - {hospitalName}</CardTitle>
-                <CardDescription>Total pengiriman: {hospitalReport.length}</CardDescription>
+            <Card className="border">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-base">Hasil - {hospitalName}</CardTitle>
+                <CardDescription className="text-sm">Total: {hospitalReport.length} pengiriman</CardDescription>
               </CardHeader>
               <CardContent>
                 {hospitalReport.length > 0 ? (
-                  <div className="rounded-lg border">
+                  <div className="rounded-lg border overflow-x-auto">
                     <Table>
                       <TableHeader>
                         <TableRow>
                           <TableHead>ID</TableHead>
-                          <TableHead>Jumlah Item</TableHead>
+                          <TableHead>Item</TableHead>
                           <TableHead>Status</TableHead>
                           <TableHead>Waktu</TableHead>
                         </TableRow>
@@ -247,9 +247,9 @@ export default function ReportTab() {
                         {hospitalReport.map((shipment) => (
                           <TableRow key={shipment.id.toString()}>
                             <TableCell className="font-medium">#{shipment.id.toString()}</TableCell>
-                            <TableCell>{shipment.peralatan.length} item</TableCell>
+                            <TableCell>{shipment.peralatan.length}</TableCell>
                             <TableCell>{shipment.status}</TableCell>
-                            <TableCell>{formatDate(shipment.waktuPengiriman)}</TableCell>
+                            <TableCell className="text-sm">{formatDate(shipment.waktuPengiriman)}</TableCell>
                           </TableRow>
                         ))}
                       </TableBody>
@@ -259,7 +259,7 @@ export default function ReportTab() {
                   <EmptyState
                     icon={FileText}
                     title="Tidak ada pengiriman"
-                    description="Tidak ada pengiriman dalam periode ini"
+                    description="Tidak ada data dalam periode ini"
                   />
                 )}
               </CardContent>

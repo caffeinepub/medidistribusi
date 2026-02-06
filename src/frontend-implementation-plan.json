@@ -1,103 +1,168 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "MediDistribusi frontend UI/UX modernization (theme + screen polish)",
+  "title": "Responsive modern simple UI template across the frontend",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Apply a cohesive modern healthcare-appropriate theme via Tailwind tokens (CSS variables), typography/spacing scale, and consistent light/dark styling across login, header, dashboard shell, and all tabs.",
+      "summary": "Apply a cohesive, modern, simple light/dark theme across LoginPrompt, Header, Dashboard, and all tab screens using Tailwind tokens/CSS variables and consistent typography/spacing/elevation.",
       "acceptanceCriteria": [
-        "Light mode and dark mode both have strong contrast, readable typography, and consistent component styling.",
-        "The visual theme is consistent across the login screen, header, dashboard shell, and each tab (Overview, Inventory, Shipments, Movements, Facilities, CRM, Reports).",
-        "Theme changes are implemented via existing theme tokens (e.g., variables in frontend/src/index.css) rather than ad-hoc one-off colors."
+        "A single, consistent visual theme is clearly applied across LoginPrompt, Header, Dashboard, and all tab screens.",
+        "Light and dark mode both look polished and readable (contrast, borders, shadows, text hierarchy).",
+        "The design remains simple (no overly decorative gradients/background effects beyond subtle accents)."
       ],
       "file_operations": [
         {
           "path": "frontend/src/index.css",
           "operation": "modify",
-          "description": "Update existing theme tokens (CSS variables) for a distinct, professional healthcare palette (avoid blue/purple-dominant hues), including light/dark values for background/foreground/surfaces/borders/ring/chart colors; refine global base typography (headings/body), spacing rhythm, and focus/selection styles so all pages inherit consistent styling. Use token-driven adjustments only (no one-off colors)."
+          "description": "Refine global theme tokens and base typography defaults (light/dark), and add small reusable utility classes for consistent elevation/spacing (without modifying any files under frontend/src/components/ui)."
         },
         {
           "path": "frontend/tailwind.config.js",
           "operation": "modify",
-          "description": "Align Tailwind theme extension with updated tokens: refine container/padding breakpoints if needed, extend typography-related theme settings (e.g., font families / shadows / radii) to support a polished, consistent scale across the app while continuing to reference CSS variables."
+          "description": "Adjust/extend Tailwind theme primitives (e.g., shadows, radii, container padding, typography defaults) to better support a simple, cohesive light/dark UI across the app."
         },
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Ensure the app shell consistently applies the new theme styling to the full viewport (light/dark) and that global layout spacing/background is driven by the updated tokens (no ad-hoc colors)."
+          "description": "Apply consistent app-level layout styling (background, content spacing, and main container behavior) so LoginPrompt, ProfileSetupModal, and Dashboard share the same overall shell and theme treatment."
+        },
+        {
+          "path": "frontend/src/components/Header.tsx",
+          "operation": "modify",
+          "description": "Simplify header styling to match the global theme (remove overly decorative gradient treatments where needed, standardize typography and elevation, ensure dark mode contrast is consistent)."
+        },
+        {
+          "path": "frontend/src/components/LoginPrompt.tsx",
+          "operation": "modify",
+          "description": "Update LoginPrompt composition to match the same theme system (card elevation, typography hierarchy, and simplified accents; reduce heavy gradients/glow while keeping a modern look)."
+        },
+        {
+          "path": "frontend/src/pages/Dashboard.tsx",
+          "operation": "modify",
+          "description": "Align dashboard tab container styling with the theme (surface/background, consistent spacing, and subtle elevation), ensuring tab states and content spacing match the same design language."
+        },
+        {
+          "path": "frontend/src/components/PageHeader.tsx",
+          "operation": "modify",
+          "description": "Standardize PageHeader typography, spacing, and responsive behavior so all tab headers feel consistent and aligned to the updated theme."
+        },
+        {
+          "path": "frontend/src/components/Footer.tsx",
+          "operation": "modify",
+          "description": "Align footer surface, border, and text styling to the same light/dark theme tokens for a consistent app-wide visual finish."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Polish Header branding, improve Dashboard tab navigation responsiveness and hierarchy, and standardize UI surfaces (cards/tables/dialogs/forms) with consistent spacing plus shared empty/loading states—without editing shadcn/ui source files.",
+      "summary": "Ensure fully responsive layout across mobile/tablet/desktop for the header branding block, dashboard tab navigation, and primary content containers without overflow.",
       "acceptanceCriteria": [
-        "Header remains sticky and clean, with improved brand presentation and a visually balanced user dropdown trigger.",
-        "Dashboard tab list is visually clear and responsive (works well on mobile and desktop), and active/hover states are clearly communicated.",
-        "Primary UI surfaces (cards, dialogs, forms) have consistent padding, border radius, shadows, and focus states aligned with the new theme.",
-        "No changes are made to any files under frontend/src/components/ui; improvements are achieved by composing these components and adjusting app-level styles/layout."
+        "On small screens, the header content does not overflow; key actions (theme toggle, account menu/login state) remain accessible.",
+        "Dashboard tab navigation remains usable on mobile (horizontal scroll works, active state is clear, labels/icons do not collide).",
+        "All major screens (overview, inventory, shipment, movement, facility, CRM, report) render without horizontal scrolling at typical mobile widths."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/PageHeader.tsx",
-          "operation": "create",
-          "description": "Create a small, reusable page header component (title, description, optional right-side actions) to enforce consistent visual hierarchy and spacing across tabs. Use the shadcn-ui component library via composition where helpful; verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/components/EmptyState.tsx",
-          "operation": "create",
-          "description": "Create a reusable empty-state component (icon, title, description, optional action slot) to standardize empty screens across tables/lists/tabs. Use the shadcn-ui component library via composition where helpful; verify the component's usage instructions before implementing."
-        },
-        {
           "path": "frontend/src/components/Header.tsx",
           "operation": "modify",
-          "description": "Refine sticky header branding block (logo mark, title/subtitle spacing, tone) to match the new theme; adjust the user dropdown trigger to be visually balanced (consistent height, padding, icon/text alignment) while continuing to compose shadcn/ui Button + DropdownMenu (do not modify shadcn/ui sources). Verify the component's usage instructions before implementing."
+          "description": "Improve responsive header layout: make branding block adapt (truncate/wrap rules, optional subtitle visibility), keep action buttons reachable, and prevent overflow on small widths."
         },
         {
           "path": "frontend/src/pages/Dashboard.tsx",
           "operation": "modify",
-          "description": "Upgrade the dashboard tabs navigation for responsiveness and clearer hierarchy (mobile-friendly layout such as scrollable/flexible tab list; improved active/hover states via classes consistent with tokens). Keep existing tabs and flows intact; only adjust composition and styling around shadcn/ui Tabs. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/components/LoginPrompt.tsx",
-          "operation": "modify",
-          "description": "Polish the login screen layout (hero/feature cards spacing, alignment, and consistent surfaces) to match the new theme and global typography, without changing authentication logic. Compose shadcn/ui Card/Button only (no shadcn source edits). Verify the component's usage instructions before implementing."
+          "description": "Refine responsive TabsList/TabsTrigger behavior: ensure mobile horizontal scroll is comfortable, provide clear active state, and prevent icon/label collisions across breakpoints."
         },
         {
           "path": "frontend/src/components/DashboardOverview.tsx",
           "operation": "modify",
-          "description": "Standardize container spacing and hierarchy using the new PageHeader; align cards and list sections to consistent padding/radius/shadows and unify empty/loading states (e.g., use EmptyState for no low-stock/pending shipments). Compose existing shadcn/ui primitives only; verify the component's usage instructions before implementing."
+          "description": "Ensure overview cards and scroll areas adapt cleanly to mobile widths (grid breakpoints, padding, and internal content wrapping) to avoid horizontal scrolling."
         },
         {
           "path": "frontend/src/components/InventoryTab.tsx",
           "operation": "modify",
-          "description": "Apply consistent page framing with PageHeader and harmonize table container, form/dialog spacing, and empty/loading states (use EmptyState for 'no inventory' and 'no search results'). Do not alter logic; only adjust composition and classes around shadcn/ui components. Verify the component's usage instructions before implementing."
+          "description": "Improve mobile responsiveness for search + table container (safe wrapping/scroll containment) and dialogs sizing so the screen does not overflow on small devices."
         },
         {
           "path": "frontend/src/components/ShipmentTab.tsx",
           "operation": "modify",
-          "description": "Apply consistent page framing with PageHeader; upgrade table/list container spacing and dialog form layout; unify empty/loading states (use EmptyState for no shipments) while keeping existing flows intact. Compose shadcn/ui primitives only; verify the component's usage instructions before implementing."
+          "description": "Improve responsive behavior for shipment dialogs, selects, and table container (proper overflow handling and spacing) to prevent horizontal scrolling on mobile."
         },
         {
           "path": "frontend/src/components/MovementTab.tsx",
           "operation": "modify",
-          "description": "Apply consistent page framing with PageHeader; standardize card/table surfaces and dialog form spacing; unify empty/loading states (use EmptyState for no movements). Keep business logic unchanged and do not edit shadcn/ui sources. Verify the component's usage instructions before implementing."
+          "description": "Make movement log table and dialog layouts mobile-safe (container padding, table overflow containment, and form spacing) while keeping current interactions."
         },
         {
           "path": "frontend/src/components/FacilityTab.tsx",
           "operation": "modify",
-          "description": "Apply consistent page framing with PageHeader; harmonize facility card grid spacing and icon containers with the new theme; use EmptyState for no facilities and ensure loading skeletons match the new surface styling. Compose shadcn/ui primitives only; verify the component's usage instructions before implementing."
+          "description": "Refine facility grid/card breakpoints and spacing to ensure clean wrapping on mobile/tablet without cramped layouts or overflow."
         },
         {
           "path": "frontend/src/components/CRMTab.tsx",
           "operation": "modify",
-          "description": "Apply consistent page framing with PageHeader; improve card grid density/spacing and dialog layouts; standardize empty/loading states (use EmptyState) while keeping admin-only controls and existing behavior intact. Compose shadcn/ui primitives only; verify the component's usage instructions before implementing."
+          "description": "Ensure CRM search, grid cards, and dialogs are responsive (max widths, padding, and scroll areas) and avoid overflow on smaller screens."
         },
         {
           "path": "frontend/src/components/ReportTab.tsx",
           "operation": "modify",
-          "description": "Apply consistent page framing with PageHeader; improve nested tabs styling/spacing, card/table surfaces, and empty states for 'no report data' using EmptyState while keeping existing report generation flows intact. Compose shadcn/ui primitives only; verify the component's usage instructions before implementing."
+          "description": "Make report tabs, forms, and results tables responsive (grid adjustments, table overflow containment, and spacing) for mobile/tablet/desktop."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Polish and simplify UI composition for cards, tables/lists, dialogs, forms, and empty/loading states to be modern and consistent without changing behavior.",
+      "acceptanceCriteria": [
+        "Cards, forms, and dialogs use consistent padding, border radius, and spacing across all tabs.",
+        "Empty states and loading states look consistent and aligned with the chosen theme.",
+        "No existing functional behavior is removed or broken (CRUD flows, navigation, and auth flow still work as before)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/EmptyState.tsx",
+          "operation": "modify",
+          "description": "Unify empty state styling (icon container, spacing, typography) to match the new card/dialog theme and look consistent across all tabs."
+        },
+        {
+          "path": "frontend/src/components/ProfileSetupModal.tsx",
+          "operation": "modify",
+          "description": "Polish modal layout (spacing, typography, button sizing, and light/dark readability) to match other dialogs and forms while preserving existing save behavior."
+        },
+        {
+          "path": "frontend/src/components/DashboardOverview.tsx",
+          "operation": "modify",
+          "description": "Standardize card padding/elevation, skeleton layout consistency, and list-item surfaces inside cards to match the same theme and spacing system."
+        },
+        {
+          "path": "frontend/src/components/InventoryTab.tsx",
+          "operation": "modify",
+          "description": "Make card/table/dialog composition consistent: align padding, table wrapper styling, form spacing, and loading/empty presentation without altering CRUD behavior."
+        },
+        {
+          "path": "frontend/src/components/ShipmentTab.tsx",
+          "operation": "modify",
+          "description": "Standardize card/table/dialog composition (padding, borders, scroll areas, and form spacing) to match other tabs while keeping shipment flows unchanged."
+        },
+        {
+          "path": "frontend/src/components/MovementTab.tsx",
+          "operation": "modify",
+          "description": "Align movement tab card/table/dialog composition with consistent spacing, border radius, and loading/empty styling without changing logging behavior."
+        },
+        {
+          "path": "frontend/src/components/FacilityTab.tsx",
+          "operation": "modify",
+          "description": "Ensure facility cards and add dialog use consistent padding, radius, and elevation; align skeletons and empty state presentation with the rest of the app."
+        },
+        {
+          "path": "frontend/src/components/CRMTab.tsx",
+          "operation": "modify",
+          "description": "Unify CRM card layout, form controls spacing, scroll-area surfaces, and dialog/alert styling to match the app theme without changing admin/user behavior."
+        },
+        {
+          "path": "frontend/src/components/ReportTab.tsx",
+          "operation": "modify",
+          "description": "Polish report cards and result presentation (summary blocks, tables, empty states) using consistent elevation/spacing and simplified accents while keeping report generation behavior the same."
         }
       ]
     }

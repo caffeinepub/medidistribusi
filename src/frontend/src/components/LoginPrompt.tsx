@@ -9,33 +9,33 @@ export default function LoginPrompt() {
   const isLoggingIn = loginStatus === 'logging-in';
 
   return (
-    <div className="container py-16 md:py-24">
-      <div className="mx-auto max-w-5xl space-y-12">
-        <div className="text-center space-y-6 animate-fade-in">
-          <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-3xl bg-gradient-to-br from-primary to-chart-2 shadow-glow">
-            <Package className="h-12 w-12 text-primary-foreground" />
+    <div className="container py-12 md:py-20">
+      <div className="mx-auto max-w-4xl space-y-10">
+        <div className="text-center space-y-4 animate-fade-in">
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary">
+            <Package className="h-8 w-8 text-primary-foreground" />
           </div>
-          <div className="space-y-3">
-            <h1 className="text-5xl font-bold tracking-tight md:text-6xl">MediDistribusi</h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Sistem Manajemen Distribusi Peralatan Kesehatan yang Modern dan Efisien
+          <div className="space-y-2">
+            <h1 className="text-4xl font-bold tracking-tight md:text-5xl">MediDistribusi</h1>
+            <p className="text-lg text-muted-foreground max-w-xl mx-auto">
+              Sistem Manajemen Distribusi Peralatan Kesehatan
             </p>
           </div>
         </div>
 
-        <Card className="border-2 shadow-soft">
-          <CardHeader className="text-center pb-4">
-            <CardTitle className="text-2xl">Selamat Datang</CardTitle>
-            <CardDescription className="text-base">
-              Masuk untuk mengakses sistem manajemen distribusi peralatan kesehatan
+        <Card className="border">
+          <CardHeader className="text-center pb-3">
+            <CardTitle className="text-xl">Selamat Datang</CardTitle>
+            <CardDescription>
+              Masuk untuk mengakses sistem manajemen distribusi
             </CardDescription>
           </CardHeader>
-          <CardContent className="flex justify-center pb-8">
+          <CardContent className="flex justify-center pb-6">
             <Button
               size="lg"
               onClick={login}
               disabled={isLoggingIn}
-              className="min-w-[200px] h-12 text-base gap-2 shadow-sm"
+              className="min-w-[180px] gap-2"
             >
               {isLoggingIn ? 'Memproses...' : (
                 <>
@@ -47,59 +47,59 @@ export default function LoginPrompt() {
           </CardContent>
         </Card>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <Card className="border shadow-xs hover:shadow-soft transition-shadow">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <Card className="border hover:border-primary/50 transition-colors">
             <CardHeader className="pb-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-chart-1/10 mb-3">
-                <Package className="h-6 w-6 text-chart-1" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-chart-1/10 mb-2">
+                <Package className="h-5 w-5 text-chart-1" />
               </div>
-              <CardTitle className="text-lg">Inventaris</CardTitle>
+              <CardTitle className="text-base">Inventaris</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Kelola stok peralatan kesehatan secara real-time dengan sistem yang terintegrasi
+              <p className="text-sm text-muted-foreground">
+                Kelola stok peralatan kesehatan secara real-time
               </p>
             </CardContent>
           </Card>
 
-          <Card className="border shadow-xs hover:shadow-soft transition-shadow">
+          <Card className="border hover:border-primary/50 transition-colors">
             <CardHeader className="pb-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-chart-2/10 mb-3">
-                <TrendingUp className="h-6 w-6 text-chart-2" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-chart-2/10 mb-2">
+                <TrendingUp className="h-5 w-5 text-chart-2" />
               </div>
-              <CardTitle className="text-lg">Pengiriman</CardTitle>
+              <CardTitle className="text-base">Pengiriman</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Lacak pengiriman ke rumah sakit dan klinik dengan status real-time
+              <p className="text-sm text-muted-foreground">
+                Lacak pengiriman ke rumah sakit dan klinik
               </p>
             </CardContent>
           </Card>
 
-          <Card className="border shadow-xs hover:shadow-soft transition-shadow">
+          <Card className="border hover:border-primary/50 transition-colors">
             <CardHeader className="pb-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-chart-3/10 mb-3">
-                <Users className="h-6 w-6 text-chart-3" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-chart-3/10 mb-2">
+                <Users className="h-5 w-5 text-chart-3" />
               </div>
-              <CardTitle className="text-lg">Pergerakan</CardTitle>
+              <CardTitle className="text-base">Pergerakan</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Catat dan monitor pergerakan peralatan antar lokasi dengan mudah
+              <p className="text-sm text-muted-foreground">
+                Catat pergerakan peralatan antar lokasi
               </p>
             </CardContent>
           </Card>
 
-          <Card className="border shadow-xs hover:shadow-soft transition-shadow">
+          <Card className="border hover:border-primary/50 transition-colors">
             <CardHeader className="pb-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-chart-4/10 mb-3">
-                <Shield className="h-6 w-6 text-chart-4" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-chart-4/10 mb-2">
+                <Shield className="h-5 w-5 text-chart-4" />
               </div>
-              <CardTitle className="text-lg">Laporan</CardTitle>
+              <CardTitle className="text-base">Laporan</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Buat laporan distribusi dan analisis untuk pengambilan keputusan
+              <p className="text-sm text-muted-foreground">
+                Buat laporan distribusi dan analisis
               </p>
             </CardContent>
           </Card>

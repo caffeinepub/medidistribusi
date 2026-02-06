@@ -170,11 +170,11 @@ export default function CRMTab() {
 
   if (isLoading) {
     return (
-      <div className="space-y-6">
+      <div className="space-y-4">
         <Skeleton className="h-10 w-full" />
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {[...Array(6)].map((_, i) => (
-            <Skeleton key={i} className="h-64 w-full" />
+            <Skeleton key={i} className="h-56 w-full" />
           ))}
         </div>
       </div>
@@ -182,7 +182,7 @@ export default function CRMTab() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <PageHeader
         title="CRM"
         description="Kelola hubungan dengan fasilitas pelayanan medis"
@@ -190,18 +190,19 @@ export default function CRMTab() {
           isAdmin ? (
             <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
               <DialogTrigger asChild>
-                <Button className="gap-2 shadow-sm">
+                <Button className="gap-2">
                   <Plus className="h-4 w-4" />
-                  Tambah Relasi
+                  <span className="hidden sm:inline">Tambah Relasi</span>
+                  <span className="sm:hidden">Tambah</span>
                 </Button>
               </DialogTrigger>
-              <DialogContent>
+              <DialogContent className="max-w-md">
                 <DialogHeader>
                   <DialogTitle>Tambah Relasi Baru</DialogTitle>
-                  <DialogDescription>Tambahkan fasilitas pelayanan medis baru ke dalam CRM</DialogDescription>
+                  <DialogDescription>Tambahkan fasilitas pelayanan medis baru</DialogDescription>
                 </DialogHeader>
-                <div className="space-y-4">
-                  <div className="space-y-2">
+                <div className="space-y-3">
+                  <div className="space-y-1.5">
                     <Label htmlFor="namaFasilitas">Nama Fasilitas</Label>
                     <Input
                       id="namaFasilitas"
@@ -210,7 +211,7 @@ export default function CRMTab() {
                       placeholder="RS Umum Jakarta"
                     />
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-1.5">
                     <Label htmlFor="kontakUtama">Kontak Utama</Label>
                     <Input
                       id="kontakUtama"
@@ -219,7 +220,7 @@ export default function CRMTab() {
                       placeholder="+62 812 3456 7890"
                     />
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-1.5">
                     <Label htmlFor="email">Email</Label>
                     <Input
                       id="email"
@@ -229,7 +230,7 @@ export default function CRMTab() {
                       placeholder="kontak@rumahsakit.com"
                     />
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-1.5">
                     <Label htmlFor="statusKemitraan">Status Kemitraan</Label>
                     <Select
                       value={formData.statusKemitraan}
@@ -260,7 +261,7 @@ export default function CRMTab() {
         }
       />
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-3">
         <Input
           placeholder="Cari fasilitas, kontak, atau email..."
           value={searchTerm}
@@ -270,47 +271,47 @@ export default function CRMTab() {
       </div>
 
       {filteredRelasi && filteredRelasi.length > 0 ? (
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {filteredRelasi.map((rel) => (
-            <Card key={rel.id.toString()} className="border shadow-xs hover:shadow-soft transition-shadow">
-              <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div className="space-y-2">
-                    <CardTitle className="flex items-center gap-2 text-lg">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                        <Building2 className="h-5 w-5 text-primary" />
+            <Card key={rel.id.toString()} className="border hover:border-primary/50 transition-colors">
+              <CardHeader className="pb-3">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="space-y-2 min-w-0 flex-1">
+                    <CardTitle className="flex items-center gap-2 text-base">
+                      <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                        <Building2 className="h-4 w-4 text-primary" />
                       </div>
-                      <span>{rel.namaFasilitas}</span>
+                      <span className="truncate">{rel.namaFasilitas}</span>
                     </CardTitle>
-                    <Badge variant={getStatusBadgeVariant(rel.statusKemitraan)}>
+                    <Badge variant={getStatusBadgeVariant(rel.statusKemitraan)} className="text-xs">
                       {rel.statusKemitraan}
                     </Badge>
                   </div>
                 </div>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-2 text-sm">
+              <CardContent className="space-y-3">
+                <div className="space-y-1.5 text-sm">
                   <div className="flex items-center gap-2 text-muted-foreground">
-                    <Phone className="h-4 w-4" />
-                    {rel.kontakUtama}
+                    <Phone className="h-3.5 w-3.5 flex-shrink-0" />
+                    <span className="truncate">{rel.kontakUtama}</span>
                   </div>
                   <div className="flex items-center gap-2 text-muted-foreground">
-                    <Mail className="h-4 w-4" />
-                    {rel.email}
+                    <Mail className="h-3.5 w-3.5 flex-shrink-0" />
+                    <span className="truncate">{rel.email}</span>
                   </div>
                 </div>
 
                 {rel.catatanInteraksi.length > 0 && (
-                  <div className="space-y-2">
-                    <p className="text-sm font-medium">Catatan Interaksi ({rel.catatanInteraksi.length})</p>
-                    <ScrollArea className="h-24 rounded-lg border bg-muted/30 p-3">
-                      <div className="space-y-2">
+                  <div className="space-y-1.5">
+                    <p className="text-xs font-medium">Catatan ({rel.catatanInteraksi.length})</p>
+                    <ScrollArea className="h-20 rounded-lg border bg-muted/30 p-2">
+                      <div className="space-y-1.5">
                         {rel.catatanInteraksi.map((catatan, idx) => (
                           <div key={idx} className="text-xs">
                             <p className="text-muted-foreground">
                               {new Date(Number(catatan.tanggal) / 1000000).toLocaleDateString('id-ID')}
                             </p>
-                            <p>{catatan.isi}</p>
+                            <p className="line-clamp-2">{catatan.isi}</p>
                           </div>
                         ))}
                       </div>
@@ -318,27 +319,27 @@ export default function CRMTab() {
                   </div>
                 )}
 
-                <div className="flex gap-2">
+                <div className="flex gap-1.5">
                   <Button
                     variant="outline"
                     size="sm"
-                    className="flex-1"
+                    className="flex-1 text-xs"
                     onClick={() => openNoteDialog(rel)}
                   >
-                    <MessageSquarePlus className="mr-2 h-4 w-4" />
+                    <MessageSquarePlus className="mr-1.5 h-3.5 w-3.5" />
                     Catatan
                   </Button>
                   {isAdmin && (
                     <>
                       <Button variant="outline" size="sm" onClick={() => openEditDialog(rel)}>
-                        <Edit className="h-4 w-4" />
+                        <Edit className="h-3.5 w-3.5" />
                       </Button>
                       <Button
                         variant="outline"
                         size="sm"
                         onClick={() => openDeleteDialog(rel)}
                       >
-                        <Trash2 className="h-4 w-4" />
+                        <Trash2 className="h-3.5 w-3.5" />
                       </Button>
                     </>
                   )}
@@ -348,8 +349,8 @@ export default function CRMTab() {
           ))}
         </div>
       ) : (
-        <Card className="border shadow-xs">
-          <CardContent className="p-12">
+        <Card className="border">
+          <CardContent className="p-10">
             <EmptyState
               icon={Building2}
               title="Belum ada relasi"
@@ -361,13 +362,13 @@ export default function CRMTab() {
 
       {/* Edit Dialog */}
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-        <DialogContent>
+        <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Edit Relasi</DialogTitle>
-            <DialogDescription>Perbarui informasi fasilitas pelayanan medis</DialogDescription>
+            <DialogDescription>Perbarui informasi fasilitas</DialogDescription>
           </DialogHeader>
-          <div className="space-y-4">
-            <div className="space-y-2">
+          <div className="space-y-3">
+            <div className="space-y-1.5">
               <Label htmlFor="edit-namaFasilitas">Nama Fasilitas</Label>
               <Input
                 id="edit-namaFasilitas"
@@ -375,7 +376,7 @@ export default function CRMTab() {
                 onChange={(e) => setFormData({ ...formData, namaFasilitas: e.target.value })}
               />
             </div>
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <Label htmlFor="edit-kontakUtama">Kontak Utama</Label>
               <Input
                 id="edit-kontakUtama"
@@ -383,7 +384,7 @@ export default function CRMTab() {
                 onChange={(e) => setFormData({ ...formData, kontakUtama: e.target.value })}
               />
             </div>
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <Label htmlFor="edit-email">Email</Label>
               <Input
                 id="edit-email"
@@ -392,7 +393,7 @@ export default function CRMTab() {
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               />
             </div>
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <Label htmlFor="edit-statusKemitraan">Status Kemitraan</Label>
               <Select
                 value={formData.statusKemitraan}
@@ -422,22 +423,22 @@ export default function CRMTab() {
 
       {/* Note Dialog */}
       <Dialog open={isNoteDialogOpen} onOpenChange={setIsNoteDialogOpen}>
-        <DialogContent>
+        <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Tambah Catatan Interaksi</DialogTitle>
             <DialogDescription>
-              Tambahkan catatan tindak lanjut untuk {selectedRelasi?.namaFasilitas}
+              Catatan untuk {selectedRelasi?.namaFasilitas}
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-4">
-            <div className="space-y-2">
+          <div className="space-y-3">
+            <div className="space-y-1.5">
               <Label htmlFor="note">Catatan</Label>
               <Textarea
                 id="note"
                 value={noteText}
                 onChange={(e) => setNoteText(e.target.value)}
                 placeholder="Tulis catatan interaksi..."
-                rows={5}
+                rows={4}
               />
             </div>
           </div>

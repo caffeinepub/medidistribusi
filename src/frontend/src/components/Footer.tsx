@@ -2,11 +2,11 @@ import { Heart } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border/40 bg-muted/30">
-      <div className="container py-6">
-        <div className="flex flex-col items-center justify-center gap-2 text-center text-sm text-muted-foreground">
+    <footer className="border-t bg-muted/30">
+      <div className="container py-4">
+        <div className="flex flex-col items-center justify-center gap-1 text-center text-sm text-muted-foreground">
           <p className="flex items-center gap-1">
-            © 2025. Dibuat dengan <Heart className="h-4 w-4 fill-red-500 text-red-500" /> menggunakan{' '}
+            © 2026. Dibuat dengan <Heart className="h-3 w-3 fill-red-500 text-red-500" /> menggunakan{' '}
             <a
               href="https://caffeine.ai"
               target="_blank"

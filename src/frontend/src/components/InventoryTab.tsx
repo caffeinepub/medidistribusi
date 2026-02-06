@@ -87,25 +87,26 @@ export default function InventoryTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <PageHeader
         title="Inventaris"
         description="Kelola stok peralatan kesehatan"
         action={
           <Dialog open={addDialogOpen} onOpenChange={setAddDialogOpen}>
             <DialogTrigger asChild>
-              <Button className="gap-2 shadow-sm">
+              <Button className="gap-2">
                 <Plus className="h-4 w-4" />
-                Tambah Inventaris
+                <span className="hidden sm:inline">Tambah Inventaris</span>
+                <span className="sm:hidden">Tambah</span>
               </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-md">
+            <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
               <DialogHeader>
                 <DialogTitle>Tambah Inventaris Baru</DialogTitle>
                 <DialogDescription>Masukkan detail peralatan kesehatan</DialogDescription>
               </DialogHeader>
-              <div className="space-y-4">
-                <div className="space-y-2">
+              <div className="space-y-3">
+                <div className="space-y-1.5">
                   <Label htmlFor="nama">Nama Peralatan</Label>
                   <Input
                     id="nama"
@@ -114,7 +115,7 @@ export default function InventoryTab() {
                     onChange={(e) => setNewItem({ ...newItem, nama: e.target.value })}
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <Label htmlFor="kategori">Kategori</Label>
                   <Input
                     id="kategori"
@@ -123,16 +124,17 @@ export default function InventoryTab() {
                     onChange={(e) => setNewItem({ ...newItem, kategori: e.target.value })}
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <Label htmlFor="deskripsi">Deskripsi</Label>
                   <Textarea
                     id="deskripsi"
                     placeholder="Deskripsi peralatan"
                     value={newItem.deskripsi}
                     onChange={(e) => setNewItem({ ...newItem, deskripsi: e.target.value })}
+                    rows={3}
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <Label htmlFor="lokasi">Lokasi</Label>
                   <Input
                     id="lokasi"
@@ -141,7 +143,7 @@ export default function InventoryTab() {
                     onChange={(e) => setNewItem({ ...newItem, lokasi: e.target.value })}
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <Label htmlFor="jumlah">Jumlah</Label>
                   <Input
                     id="jumlah"
@@ -160,9 +162,9 @@ export default function InventoryTab() {
         }
       />
 
-      <Card className="border shadow-xs">
-        <CardContent className="p-6">
-          <div className="mb-4">
+      <Card className="border">
+        <CardContent className="p-4">
+          <div className="mb-3">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
@@ -181,16 +183,16 @@ export default function InventoryTab() {
               ))}
             </div>
           ) : filteredInventaris && filteredInventaris.length > 0 ? (
-            <div className="rounded-lg border">
+            <div className="rounded-lg border overflow-x-auto">
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Nama Peralatan</TableHead>
-                    <TableHead>Kategori</TableHead>
-                    <TableHead>Lokasi</TableHead>
-                    <TableHead>Jumlah</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead className="text-right">Aksi</TableHead>
+                    <TableHead className="min-w-[150px]">Nama Peralatan</TableHead>
+                    <TableHead className="min-w-[100px]">Kategori</TableHead>
+                    <TableHead className="min-w-[120px]">Lokasi</TableHead>
+                    <TableHead className="min-w-[80px]">Jumlah</TableHead>
+                    <TableHead className="min-w-[80px]">Status</TableHead>
+                    <TableHead className="text-right min-w-[60px]">Aksi</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -199,7 +201,7 @@ export default function InventoryTab() {
                       <TableCell className="font-medium">{item.jenis.nama}</TableCell>
                       <TableCell>{item.jenis.kategori}</TableCell>
                       <TableCell>{item.lokasi}</TableCell>
-                      <TableCell>{item.jumlah.toString()} unit</TableCell>
+                      <TableCell>{item.jumlah.toString()}</TableCell>
                       <TableCell>{getStockBadge(item.jumlah)}</TableCell>
                       <TableCell className="text-right">
                         <Button
@@ -237,8 +239,8 @@ export default function InventoryTab() {
               {selectedItem?.jenis.nama} - {selectedItem?.lokasi}
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-4">
-            <div className="space-y-2">
+          <div className="space-y-3">
+            <div className="space-y-1.5">
               <Label htmlFor="newQuantity">Jumlah Baru</Label>
               <Input
                 id="newQuantity"

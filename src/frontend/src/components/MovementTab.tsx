@@ -63,25 +63,26 @@ export default function MovementTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <PageHeader
         title="Log Pergerakan"
         description="Catat pergerakan peralatan antar lokasi"
         action={
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
-              <Button className="gap-2 shadow-sm">
+              <Button className="gap-2">
                 <Plus className="h-4 w-4" />
-                Catat Pergerakan
+                <span className="hidden sm:inline">Catat Pergerakan</span>
+                <span className="sm:hidden">Catat</span>
               </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-md">
+            <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
               <DialogHeader>
                 <DialogTitle>Catat Pergerakan Peralatan</DialogTitle>
                 <DialogDescription>Masukkan detail pergerakan peralatan</DialogDescription>
               </DialogHeader>
-              <div className="space-y-4">
-                <div className="space-y-2">
+              <div className="space-y-3">
+                <div className="space-y-1.5">
                   <Label>Peralatan</Label>
                   <Select value={selectedEquipmentId} onValueChange={setSelectedEquipmentId}>
                     <SelectTrigger>
@@ -98,13 +99,13 @@ export default function MovementTab() {
                 </div>
 
                 {selectedEquipment && (
-                  <div className="rounded-lg border bg-muted/50 p-3 text-sm">
-                    <p className="text-muted-foreground">Stok tersedia:</p>
+                  <div className="rounded-lg border bg-muted/50 p-2.5 text-sm">
+                    <p className="text-muted-foreground text-xs">Stok tersedia:</p>
                     <p className="font-medium">{selectedEquipment.jumlah.toString()} unit</p>
                   </div>
                 )}
 
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <Label htmlFor="quantity">Jumlah</Label>
                   <Input
                     id="quantity"
@@ -116,7 +117,7 @@ export default function MovementTab() {
                   />
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <Label htmlFor="source">Lokasi Asal</Label>
                   <Input
                     id="source"
@@ -126,7 +127,7 @@ export default function MovementTab() {
                   />
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <Label htmlFor="destination">Lokasi Tujuan</Label>
                   <Input
                     id="destination"
@@ -149,8 +150,8 @@ export default function MovementTab() {
         }
       />
 
-      <Card className="border shadow-xs">
-        <CardContent className="p-6">
+      <Card className="border">
+        <CardContent className="p-4">
           {isLoading ? (
             <div className="space-y-2">
               {[...Array(5)].map((_, i) => (
@@ -158,16 +159,16 @@ export default function MovementTab() {
               ))}
             </div>
           ) : movements && movements.length > 0 ? (
-            <div className="rounded-lg border">
+            <div className="rounded-lg border overflow-x-auto">
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>ID</TableHead>
-                    <TableHead>Peralatan</TableHead>
-                    <TableHead>Jumlah</TableHead>
-                    <TableHead>Dari</TableHead>
-                    <TableHead>Ke</TableHead>
-                    <TableHead>Waktu</TableHead>
+                    <TableHead className="min-w-[60px]">ID</TableHead>
+                    <TableHead className="min-w-[150px]">Peralatan</TableHead>
+                    <TableHead className="min-w-[80px]">Jumlah</TableHead>
+                    <TableHead className="min-w-[120px]">Dari</TableHead>
+                    <TableHead className="min-w-[120px]">Ke</TableHead>
+                    <TableHead className="min-w-[140px]">Waktu</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -177,10 +178,10 @@ export default function MovementTab() {
                       <TableRow key={movement.id.toString()}>
                         <TableCell className="font-medium">#{movement.id.toString()}</TableCell>
                         <TableCell>{equipment?.jenis.nama || `ID: ${movement.peralatanId.toString()}`}</TableCell>
-                        <TableCell>{movement.jumlah.toString()} unit</TableCell>
+                        <TableCell>{movement.jumlah.toString()}</TableCell>
                         <TableCell>{movement.lokasiAsal}</TableCell>
                         <TableCell>{movement.lokasiTujuan}</TableCell>
-                        <TableCell>{formatDate(movement.waktu)}</TableCell>
+                        <TableCell className="text-sm">{formatDate(movement.waktu)}</TableCell>
                       </TableRow>
                     );
                   })}

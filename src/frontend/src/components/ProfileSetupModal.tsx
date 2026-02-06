@@ -20,13 +20,13 @@ export default function ProfileSetupModal() {
   return (
     <Dialog open={true}>
       <DialogContent className="sm:max-w-md" onPointerDownOutside={(e) => e.preventDefault()}>
-        <DialogHeader>
-          <DialogTitle>Selamat Datang!</DialogTitle>
+        <DialogHeader className="space-y-2">
+          <DialogTitle className="text-xl">Selamat Datang!</DialogTitle>
           <DialogDescription>
             Silakan lengkapi profil Anda untuk melanjutkan
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 pt-2">
           <div className="space-y-2">
             <Label htmlFor="nama">Nama Lengkap</Label>
             <Input

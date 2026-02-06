@@ -2,11 +2,16 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-apply-a-cohesive-modern-visual-theme-across-the-entire-frontend-login-header-dashboard-and-all-tabs-by-updating-tailwind-theme-tokens-css-variables-typography-scale-spacing-and-component-composition-to-feel-more-polished-and-consistent-in-both-light-and-dark-mode-choose-a-distinct-professional-healthcare-appropriate-style-avoid-a-blue-purple-dominant-palette-unless-explicitly-required-and-enforce-it-consistently-across-pages",
-      "featureTitle": "Apply a cohesive modern visual theme across the entire frontend (login, header, dashboard, and all tabs) by updating Tailwind theme tokens (CSS variables), typography scale, spacing, and component composition to feel more polished and consistent in both light and dark mode. Choose a distinct, professional healthcare-appropriate style (avoid a blue/purple-dominant palette unless explicitly required) and enforce it consistently across pages.",
+      "featureId": "feature-apply-a-cohesive-responsive-modern-and-simple-visual-theme-across-the-entire-frontend-login-header-dashboard-and-all-tabs-using-tailwind-tokens-css-variables-consistent-typography-spacing-and-elevation-in-both-light-and-dark-mode",
+      "featureTitle": "Apply a cohesive, responsive, modern, and simple visual theme across the entire frontend (login, header, dashboard, and all tabs) using Tailwind tokens/CSS variables, consistent typography, spacing, and elevation in both light and dark mode.",
       "files": [
         "frontend/src/App.tsx",
+        "frontend/src/components/Footer.tsx",
+        "frontend/src/components/Header.tsx",
+        "frontend/src/components/LoginPrompt.tsx",
+        "frontend/src/components/PageHeader.tsx",
         "frontend/src/index.css",
+        "frontend/src/pages/Dashboard.tsx",
         "frontend/tailwind.config.js"
       ],
       "components": [
@@ -23,18 +28,15 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-polish-key-screens-to-look-modern-refine-the-header-branding-block-improve-the-dashboard-tab-navigation-responsiveness-and-visual-hierarchy-and-upgrade-major-content-containers-cards-tables-lists-dialogs-forms-with-better-spacing-alignment-and-consistent-empty-loading-states-without-modifying-read-only-shadcn-ui-component-sources",
-      "featureTitle": "Polish key screens to look modern: refine the Header branding block, improve the Dashboard tab navigation responsiveness and visual hierarchy, and upgrade major content containers (cards, tables/lists, dialogs, forms) with better spacing, alignment, and consistent empty/loading states—without modifying read-only shadcn/ui component sources.",
+      "featureId": "feature-ensure-the-app-layout-is-fully-responsive-across-common-breakpoints-mobile-tablet-desktop-improve-the-header-branding-block-dashboard-tab-navigation-and-primary-content-containers-so-they-adapt-cleanly-without-overflow-or-cramped-spacing",
+      "featureTitle": "Ensure the app layout is fully responsive across common breakpoints (mobile, tablet, desktop): improve the header branding block, dashboard tab navigation, and primary content containers so they adapt cleanly without overflow or cramped spacing.",
       "files": [
         "frontend/src/components/CRMTab.tsx",
         "frontend/src/components/DashboardOverview.tsx",
-        "frontend/src/components/EmptyState.tsx",
         "frontend/src/components/FacilityTab.tsx",
         "frontend/src/components/Header.tsx",
         "frontend/src/components/InventoryTab.tsx",
-        "frontend/src/components/LoginPrompt.tsx",
         "frontend/src/components/MovementTab.tsx",
-        "frontend/src/components/PageHeader.tsx",
         "frontend/src/components/ReportTab.tsx",
         "frontend/src/components/ShipmentTab.tsx",
         "frontend/src/pages/Dashboard.tsx"
@@ -49,6 +51,33 @@
       ],
       "testIds": [
         "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-polish-and-simplify-the-ui-composition-of-major-content-elements-cards-tables-lists-dialogs-forms-empty-loading-states-to-feel-modern-and-consistent-while-keeping-interactions-and-existing-features-unchanged",
+      "featureTitle": "Polish and simplify the UI composition of major content elements (cards, tables/lists, dialogs, forms, empty/loading states) to feel modern and consistent while keeping interactions and existing features unchanged.",
+      "files": [
+        "frontend/src/components/CRMTab.tsx",
+        "frontend/src/components/DashboardOverview.tsx",
+        "frontend/src/components/EmptyState.tsx",
+        "frontend/src/components/FacilityTab.tsx",
+        "frontend/src/components/InventoryTab.tsx",
+        "frontend/src/components/MovementTab.tsx",
+        "frontend/src/components/ProfileSetupModal.tsx",
+        "frontend/src/components/ReportTab.tsx",
+        "frontend/src/components/ShipmentTab.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
       ],
       "confidence": "high"
     }

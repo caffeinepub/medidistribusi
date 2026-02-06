@@ -1,55 +1,72 @@
 {
   "kind": "build_request",
-  "title": "Modernize and polish the MediDistribusi UI/UX",
+  "title": "Apply a responsive, modern, simple UI template across the app",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Apply a cohesive modern visual theme across the entire frontend (login, header, dashboard, and all tabs) by updating Tailwind theme tokens (CSS variables), typography scale, spacing, and component composition to feel more polished and consistent in both light and dark mode. Choose a distinct, professional healthcare-appropriate style (avoid a blue/purple-dominant palette unless explicitly required) and enforce it consistently across pages.",
+      "text": "Apply a cohesive, responsive, modern, and simple visual theme across the entire frontend (login, header, dashboard, and all tabs) using Tailwind tokens/CSS variables, consistent typography, spacing, and elevation in both light and dark mode.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-10"
+          "msg-14"
         ],
         "quotes": [
-          "buat kan tampilan yang modern dan bagus"
+          "template yang responsipf dan modern,simple"
         ]
       },
       "acceptanceCriteria": [
-        "Light mode and dark mode both have strong contrast, readable typography, and consistent component styling.",
-        "The visual theme is consistent across the login screen, header, dashboard shell, and each tab (Overview, Inventory, Shipments, Movements, Facilities, CRM, Reports).",
-        "Theme changes are implemented via existing theme tokens (e.g., variables in frontend/src/index.css) rather than ad-hoc one-off colors."
+        "A single, consistent visual theme is clearly applied across LoginPrompt, Header, Dashboard, and all tab screens.",
+        "Light and dark mode both look polished and readable (contrast, borders, shadows, text hierarchy).",
+        "The design remains simple (no overly decorative gradients/background effects beyond subtle accents)."
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Polish key screens to look modern: refine the Header branding block, improve the Dashboard tab navigation responsiveness and visual hierarchy, and upgrade major content containers (cards, tables/lists, dialogs, forms) with better spacing, alignment, and consistent empty/loading states—without modifying read-only shadcn/ui component sources.",
+      "text": "Ensure the app layout is fully responsive across common breakpoints (mobile, tablet, desktop): improve the header branding block, dashboard tab navigation, and primary content containers so they adapt cleanly without overflow or cramped spacing.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-10"
+          "msg-14"
         ],
         "quotes": [
-          "buat kan tampilan yang modern dan bagus"
+          "template yang responsipf dan modern,simple"
         ]
       },
       "acceptanceCriteria": [
-        "Header remains sticky and clean, with improved brand presentation and a visually balanced user dropdown trigger.",
-        "Dashboard tab list is visually clear and responsive (works well on mobile and desktop), and active/hover states are clearly communicated.",
-        "Primary UI surfaces (cards, dialogs, forms) have consistent padding, border radius, shadows, and focus states aligned with the new theme.",
-        "No changes are made to any files under frontend/src/components/ui; improvements are achieved by composing these components and adjusting app-level styles/layout."
+        "On small screens, the header content does not overflow; key actions (theme toggle, account menu/login state) remain accessible.",
+        "Dashboard tab navigation remains usable on mobile (horizontal scroll works, active state is clear, labels/icons do not collide).",
+        "All major screens (overview, inventory, shipment, movement, facility, CRM, report) render without horizontal scrolling at typical mobile widths."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Polish and simplify the UI composition of major content elements (cards, tables/lists, dialogs, forms, empty/loading states) to feel modern and consistent while keeping interactions and existing features unchanged.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-14"
+        ],
+        "quotes": [
+          "template yang responsipf dan modern,simple"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Cards, forms, and dialogs use consistent padding, border radius, and spacing across all tabs.",
+        "Empty states and loading states look consistent and aligned with the chosen theme.",
+        "No existing functional behavior is removed or broken (CRUD flows, navigation, and auth flow still work as before)."
       ]
     }
   ],
   "constraints": [
-    "Do not edit immutable frontend paths listed in SYSTEM_CONTEXT (including frontend/src/components/ui and Internet Identity hooks).",
-    "Do not modify shadcn/ui component source files; only compose them and adjust app-level styling/tokens.",
-    "Keep the existing feature set and navigation structure (tabs and flows) intact; this request is UI/UX modernization only."
+    "Do not modify files under frontend/src/components/ui (compose them instead).",
+    "Do not edit frontend immutable paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, and frontend/src/components/ui.",
+    "Frontend changes only; do not change backend behavior or data models for this request."
   ],
   "nonGoals": [
-    "Adding new backend features or changing Motoko data models/APIs.",
-    "Reworking business logic (inventory, shipments, movements, CRM, reports).",
-    "Introducing third-party authentication providers or non-supported frameworks."
+    "Adding new product features (new tabs, new entities, new workflows).",
+    "Changing authentication providers (Internet Identity remains the only auth).",
+    "Introducing external CSS frameworks or replacing shadcn/ui components."
   ],
   "imageRequirements": {
     "required": [],

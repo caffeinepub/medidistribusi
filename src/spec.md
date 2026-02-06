@@ -1,12 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Modernize and polish the MediDistribusi UI/UX with a cohesive, professional healthcare-appropriate theme applied consistently across the entire frontend in both light and dark mode.
+**Goal:** Apply a cohesive, responsive, modern, and simple UI theme across the entire frontend (login, header, dashboard, and all tabs) that looks polished in both light and dark mode.
 
 **Planned changes:**
-- Update app-wide Tailwind theme tokens (CSS variables), typography scale, spacing, and shared layout styles to establish a distinct, non blue/purple-dominant modern visual theme for light/dark mode.
-- Refine the login screen, sticky header branding block, and user dropdown trigger styling to be cleaner and more balanced while keeping existing structure and behavior.
-- Improve dashboard tab navigation visual hierarchy and responsiveness (mobile/desktop), including clearer active/hover states.
-- Polish primary UI surfaces (cards, tables/lists, dialogs, forms) via composition and app-level styling: consistent padding, radius, shadows, focus states, plus consistent empty/loading states—without editing shadcn/ui component source files.
+- Define and apply shared Tailwind tokens/CSS variables for colors, typography, spacing, and elevation to ensure a consistent look across all screens.
+- Refine responsive layout behavior for header branding/actions, dashboard tab navigation, and primary content containers across mobile/tablet/desktop breakpoints.
+- Standardize UI composition for core elements (cards, tables/lists, dialogs, forms, and empty/loading states) to be modern and consistent without changing existing interactions or features.
 
-**User-visible outcome:** The app looks more modern and consistent across login, header, dashboard, and all tabs, with improved readability and visual hierarchy in both light and dark mode while preserving the existing features and navigation.
+**User-visible outcome:** The app’s UI looks uniformly modern and simple across all pages, adapts cleanly to mobile/tablet/desktop sizes without overflow, and remains readable and polished in both light and dark mode while preserving existing functionality.

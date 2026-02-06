@@ -87,19 +87,18 @@ export default {
                 sm: 'calc(var(--radius) - 4px)'
             },
             boxShadow: {
-                xs: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
-                soft: '0 2px 8px -2px rgb(0 0 0 / 0.08), 0 4px 16px -4px rgb(0 0 0 / 0.04)',
-                glow: '0 0 20px -4px oklch(var(--primary) / 0.3)',
+                xs: '0 1px 2px 0 rgb(0 0 0 / 0.04)',
+                soft: '0 2px 4px -1px rgb(0 0 0 / 0.06), 0 4px 8px -2px rgb(0 0 0 / 0.04)',
             },
             fontFamily: {
                 sans: [
-                    'Inter var',
-                    'Inter',
                     'system-ui',
                     '-apple-system',
                     'BlinkMacSystemFont',
                     'Segoe UI',
                     'Roboto',
+                    'Helvetica Neue',
+                    'Arial',
                     'sans-serif'
                 ],
             },

@@ -19,7 +19,7 @@ export default function App() {
 
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <div className="flex min-h-screen flex-col">
+      <div className="flex min-h-screen flex-col bg-background">
         <Header />
         <main className="flex-1">
           {showLoginPrompt && <LoginPrompt />}

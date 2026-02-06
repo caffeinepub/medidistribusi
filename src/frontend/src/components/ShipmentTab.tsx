@@ -86,25 +86,26 @@ export default function ShipmentTab() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <PageHeader
         title="Pengiriman"
         description="Kelola pengiriman peralatan kesehatan"
         action={
           <Dialog open={createDialogOpen} onOpenChange={setCreateDialogOpen}>
             <DialogTrigger asChild>
-              <Button className="gap-2 shadow-sm">
+              <Button className="gap-2">
                 <Plus className="h-4 w-4" />
-                Buat Pengiriman
+                <span className="hidden sm:inline">Buat Pengiriman</span>
+                <span className="sm:hidden">Buat</span>
               </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-2xl">
+            <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
               <DialogHeader>
                 <DialogTitle>Buat Pengiriman Baru</DialogTitle>
                 <DialogDescription>Pilih tujuan dan peralatan yang akan dikirim</DialogDescription>
               </DialogHeader>
-              <div className="space-y-4">
-                <div className="space-y-2">
+              <div className="space-y-3">
+                <div className="space-y-1.5">
                   <Label>Tujuan</Label>
                   <Select value={selectedDestination} onValueChange={setSelectedDestination}>
                     <SelectTrigger>
@@ -120,14 +121,14 @@ export default function ShipmentTab() {
                   </Select>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   <Label>Pilih Peralatan</Label>
-                  <ScrollArea className="h-[300px] rounded-lg border p-4">
-                    <div className="space-y-3">
+                  <ScrollArea className="h-[280px] rounded-lg border p-3">
+                    <div className="space-y-2">
                       {inventaris
                         ?.filter((item) => item.jumlah > BigInt(0))
                         .map((item) => (
-                          <div key={item.id.toString()} className="flex items-center space-x-3">
+                          <div key={item.id.toString()} className="flex items-center space-x-2">
                             <Checkbox
                               id={`equipment-${item.id}`}
                               checked={selectedEquipment.some((id) => id === item.id)}
@@ -135,13 +136,13 @@ export default function ShipmentTab() {
                             />
                             <label
                               htmlFor={`equipment-${item.id}`}
-                              className="flex-1 cursor-pointer text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                              className="flex-1 cursor-pointer text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                             >
                               <div className="flex items-center justify-between">
-                                <div>
-                                  <p>{item.jenis.nama}</p>
-                                  <p className="text-xs text-muted-foreground">
-                                    {item.lokasi} - {item.jumlah.toString()} unit tersedia
+                                <div className="min-w-0 flex-1">
+                                  <p className="font-medium truncate">{item.jenis.nama}</p>
+                                  <p className="text-xs text-muted-foreground truncate">
+                                    {item.lokasi} - {item.jumlah.toString()} unit
                                   </p>
                                 </div>
                               </div>
@@ -165,8 +166,8 @@ export default function ShipmentTab() {
         }
       />
 
-      <Card className="border shadow-xs">
-        <CardContent className="p-6">
+      <Card className="border">
+        <CardContent className="p-4">
           {isLoading ? (
             <div className="space-y-2">
               {[...Array(5)].map((_, i) => (
@@ -174,16 +175,16 @@ export default function ShipmentTab() {
               ))}
             </div>
           ) : pengiriman && pengiriman.length > 0 ? (
-            <div className="rounded-lg border">
+            <div className="rounded-lg border overflow-x-auto">
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>ID</TableHead>
-                    <TableHead>Tujuan</TableHead>
-                    <TableHead>Jumlah Item</TableHead>
-                    <TableHead>Waktu</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead className="text-right">Aksi</TableHead>
+                    <TableHead className="min-w-[60px]">ID</TableHead>
+                    <TableHead className="min-w-[150px]">Tujuan</TableHead>
+                    <TableHead className="min-w-[80px]">Item</TableHead>
+                    <TableHead className="min-w-[140px]">Waktu</TableHead>
+                    <TableHead className="min-w-[100px]">Status</TableHead>
+                    <TableHead className="text-right min-w-[140px]">Aksi</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -191,15 +192,15 @@ export default function ShipmentTab() {
                     <TableRow key={shipment.id.toString()}>
                       <TableCell className="font-medium">#{shipment.id.toString()}</TableCell>
                       <TableCell>{shipment.tujuan}</TableCell>
-                      <TableCell>{shipment.peralatan.length} item</TableCell>
-                      <TableCell>{formatDate(shipment.waktuPengiriman)}</TableCell>
+                      <TableCell>{shipment.peralatan.length}</TableCell>
+                      <TableCell className="text-sm">{formatDate(shipment.waktuPengiriman)}</TableCell>
                       <TableCell>{getStatusBadge(shipment.status)}</TableCell>
                       <TableCell className="text-right">
                         <Select
                           value={shipment.status}
                           onValueChange={(value) => handleStatusChange(shipment.id, value)}
                         >
-                          <SelectTrigger className="w-[140px]">
+                          <SelectTrigger className="w-[130px]">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>

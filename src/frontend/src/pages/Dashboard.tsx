@@ -24,17 +24,17 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="container py-6 md:py-8">
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-        <ScrollArea className="w-full whitespace-nowrap">
-          <TabsList className="inline-flex h-11 w-full justify-start rounded-xl bg-muted p-1">
+    <div className="container py-4 md:py-6">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
+        <ScrollArea className="w-full">
+          <TabsList className="inline-flex h-10 w-full justify-start rounded-lg bg-muted p-1">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (
                 <TabsTrigger
                   key={tab.value}
                   value={tab.value}
-                  className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all data-[state=active]:bg-background data-[state=active]:shadow-sm"
+                  className="inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-medium transition-all data-[state=active]:bg-background data-[state=active]:shadow-xs"
                 >
                   <Icon className="h-4 w-4" />
                   <span className="hidden sm:inline">{tab.label}</span>
@@ -45,31 +45,31 @@ export default function Dashboard() {
           <ScrollBar orientation="horizontal" className="invisible" />
         </ScrollArea>
 
-        <TabsContent value="overview" className="space-y-6 animate-fade-in">
+        <TabsContent value="overview" className="space-y-4 animate-fade-in">
           <DashboardOverview />
         </TabsContent>
 
-        <TabsContent value="inventory" className="space-y-6 animate-fade-in">
+        <TabsContent value="inventory" className="space-y-4 animate-fade-in">
           <InventoryTab />
         </TabsContent>
 
-        <TabsContent value="shipment" className="space-y-6 animate-fade-in">
+        <TabsContent value="shipment" className="space-y-4 animate-fade-in">
           <ShipmentTab />
         </TabsContent>
 
-        <TabsContent value="movement" className="space-y-6 animate-fade-in">
+        <TabsContent value="movement" className="space-y-4 animate-fade-in">
           <MovementTab />
         </TabsContent>
 
-        <TabsContent value="facility" className="space-y-6 animate-fade-in">
+        <TabsContent value="facility" className="space-y-4 animate-fade-in">
           <FacilityTab />
         </TabsContent>
 
-        <TabsContent value="crm" className="space-y-6 animate-fade-in">
+        <TabsContent value="crm" className="space-y-4 animate-fade-in">
           <CRMTab />
         </TabsContent>
 
-        <TabsContent value="report" className="space-y-6 animate-fade-in">
+        <TabsContent value="report" className="space-y-4 animate-fade-in">
           <ReportTab />
         </TabsContent>
       </Tabs>

@@ -4,119 +4,119 @@
 
 @layer base {
     :root {
-        --radius: 0.75rem;
+        --radius: 0.5rem;
         
-        /* Healthcare-inspired palette: Teal/Emerald with warm accents */
-        --background: 0.99 0.005 180;
-        --foreground: 0.20 0.015 200;
+        /* Modern minimal palette with subtle teal accent */
+        --background: 0.99 0.002 200;
+        --foreground: 0.15 0.01 220;
         
         --card: 1 0 0;
-        --card-foreground: 0.20 0.015 200;
+        --card-foreground: 0.15 0.01 220;
         
         --popover: 1 0 0;
-        --popover-foreground: 0.20 0.015 200;
+        --popover-foreground: 0.15 0.01 220;
         
-        /* Primary: Vibrant teal for healthcare trust */
-        --primary: 0.58 0.14 190;
-        --primary-foreground: 0.99 0.005 190;
+        /* Primary: Clean teal */
+        --primary: 0.55 0.12 195;
+        --primary-foreground: 0.99 0.002 195;
         
-        /* Secondary: Soft sage green */
-        --secondary: 0.95 0.02 160;
-        --secondary-foreground: 0.25 0.02 160;
+        /* Secondary: Neutral gray */
+        --secondary: 0.96 0.005 220;
+        --secondary-foreground: 0.20 0.01 220;
         
-        /* Muted: Light neutral with subtle warmth */
-        --muted: 0.96 0.008 180;
-        --muted-foreground: 0.52 0.012 200;
+        /* Muted: Light neutral */
+        --muted: 0.97 0.003 220;
+        --muted-foreground: 0.50 0.008 220;
         
-        /* Accent: Warm coral for highlights */
-        --accent: 0.94 0.025 50;
-        --accent-foreground: 0.30 0.02 50;
+        /* Accent: Subtle blue */
+        --accent: 0.96 0.008 220;
+        --accent-foreground: 0.25 0.01 220;
         
-        /* Destructive: Warm red */
-        --destructive: 0.60 0.20 25;
-        --destructive-foreground: 0.99 0.005 25;
+        /* Destructive: Clean red */
+        --destructive: 0.58 0.18 25;
+        --destructive-foreground: 0.99 0.002 25;
         
         /* Success: Fresh green */
-        --success: 0.65 0.16 145;
-        --success-foreground: 0.99 0.005 145;
+        --success: 0.62 0.14 150;
+        --success-foreground: 0.99 0.002 150;
         
         /* Warning: Amber */
-        --warning: 0.75 0.18 70;
-        --warning-foreground: 0.25 0.02 70;
+        --warning: 0.72 0.16 75;
+        --warning-foreground: 0.20 0.01 75;
         
-        --border: 0.92 0.008 180;
-        --input: 0.92 0.008 180;
-        --ring: 0.58 0.14 190;
+        --border: 0.93 0.004 220;
+        --input: 0.93 0.004 220;
+        --ring: 0.55 0.12 195;
         
-        /* Chart colors: Harmonious healthcare palette */
-        --chart-1: 0.58 0.14 190;
-        --chart-2: 0.65 0.16 145;
-        --chart-3: 0.68 0.15 220;
-        --chart-4: 0.72 0.16 280;
-        --chart-5: 0.70 0.14 50;
+        /* Chart colors: Harmonious palette */
+        --chart-1: 0.55 0.12 195;
+        --chart-2: 0.62 0.14 150;
+        --chart-3: 0.65 0.13 230;
+        --chart-4: 0.68 0.14 280;
+        --chart-5: 0.70 0.12 50;
         
-        --sidebar: 0.99 0.005 180;
-        --sidebar-foreground: 0.20 0.015 200;
-        --sidebar-primary: 0.58 0.14 190;
-        --sidebar-primary-foreground: 0.99 0.005 190;
-        --sidebar-accent: 0.95 0.02 160;
-        --sidebar-accent-foreground: 0.25 0.02 160;
-        --sidebar-border: 0.92 0.008 180;
-        --sidebar-ring: 0.58 0.14 190;
+        --sidebar: 0.99 0.002 200;
+        --sidebar-foreground: 0.15 0.01 220;
+        --sidebar-primary: 0.55 0.12 195;
+        --sidebar-primary-foreground: 0.99 0.002 195;
+        --sidebar-accent: 0.96 0.005 220;
+        --sidebar-accent-foreground: 0.20 0.01 220;
+        --sidebar-border: 0.93 0.004 220;
+        --sidebar-ring: 0.55 0.12 195;
     }
 
     .dark {
-        --background: 0.14 0.015 200;
-        --foreground: 0.96 0.008 180;
+        --background: 0.12 0.012 220;
+        --foreground: 0.97 0.003 220;
         
-        --card: 0.18 0.018 200;
-        --card-foreground: 0.96 0.008 180;
+        --card: 0.16 0.014 220;
+        --card-foreground: 0.97 0.003 220;
         
-        --popover: 0.16 0.016 200;
-        --popover-foreground: 0.96 0.008 180;
+        --popover: 0.14 0.013 220;
+        --popover-foreground: 0.97 0.003 220;
         
         /* Primary: Brighter teal for dark mode */
-        --primary: 0.68 0.16 190;
-        --primary-foreground: 0.14 0.015 190;
+        --primary: 0.65 0.14 195;
+        --primary-foreground: 0.12 0.012 195;
         
-        /* Secondary: Muted sage */
-        --secondary: 0.24 0.025 160;
-        --secondary-foreground: 0.96 0.008 160;
+        /* Secondary: Muted gray */
+        --secondary: 0.22 0.018 220;
+        --secondary-foreground: 0.97 0.003 220;
         
-        --muted: 0.22 0.020 200;
-        --muted-foreground: 0.68 0.015 180;
+        --muted: 0.20 0.016 220;
+        --muted-foreground: 0.65 0.010 220;
         
-        /* Accent: Softer coral for dark */
-        --accent: 0.28 0.030 50;
-        --accent-foreground: 0.96 0.008 50;
+        /* Accent: Subtle blue */
+        --accent: 0.25 0.020 220;
+        --accent-foreground: 0.97 0.003 220;
         
-        --destructive: 0.62 0.22 25;
-        --destructive-foreground: 0.96 0.008 25;
+        --destructive: 0.60 0.20 25;
+        --destructive-foreground: 0.97 0.003 25;
         
-        --success: 0.68 0.18 145;
-        --success-foreground: 0.14 0.015 145;
+        --success: 0.65 0.16 150;
+        --success-foreground: 0.12 0.012 150;
         
-        --warning: 0.72 0.20 70;
-        --warning-foreground: 0.14 0.015 70;
+        --warning: 0.70 0.18 75;
+        --warning-foreground: 0.12 0.012 75;
         
-        --border: 0.26 0.022 200;
-        --input: 0.26 0.022 200;
-        --ring: 0.68 0.16 190;
+        --border: 0.24 0.018 220;
+        --input: 0.24 0.018 220;
+        --ring: 0.65 0.14 195;
         
-        --chart-1: 0.68 0.16 190;
-        --chart-2: 0.68 0.18 145;
-        --chart-3: 0.70 0.17 220;
-        --chart-4: 0.74 0.18 280;
-        --chart-5: 0.72 0.16 50;
+        --chart-1: 0.65 0.14 195;
+        --chart-2: 0.65 0.16 150;
+        --chart-3: 0.68 0.15 230;
+        --chart-4: 0.72 0.16 280;
+        --chart-5: 0.70 0.14 50;
         
-        --sidebar: 0.18 0.018 200;
-        --sidebar-foreground: 0.96 0.008 180;
-        --sidebar-primary: 0.68 0.16 190;
-        --sidebar-primary-foreground: 0.14 0.015 190;
-        --sidebar-accent: 0.24 0.025 160;
-        --sidebar-accent-foreground: 0.96 0.008 160;
-        --sidebar-border: 0.26 0.022 200;
-        --sidebar-ring: 0.68 0.16 190;
+        --sidebar: 0.16 0.014 220;
+        --sidebar-foreground: 0.97 0.003 220;
+        --sidebar-primary: 0.65 0.14 195;
+        --sidebar-primary-foreground: 0.12 0.012 195;
+        --sidebar-accent: 0.22 0.018 220;
+        --sidebar-accent-foreground: 0.97 0.003 220;
+        --sidebar-border: 0.24 0.018 220;
+        --sidebar-ring: 0.65 0.14 195;
     }
 
     * {
@@ -124,7 +124,7 @@
     }
     
     body {
-        @apply bg-background text-foreground;
+        @apply bg-background text-foreground antialiased;
         font-feature-settings: "rlig" 1, "calt" 1;
     }
     
@@ -133,15 +133,15 @@
     }
     
     h1 {
-        @apply text-4xl;
+        @apply text-3xl sm:text-4xl;
     }
     
     h2 {
-        @apply text-3xl;
+        @apply text-2xl sm:text-3xl;
     }
     
     h3 {
-        @apply text-2xl;
+        @apply text-xl sm:text-2xl;
     }
 }
 
